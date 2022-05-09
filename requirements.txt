@@ -1,3 +1,2 @@
 streamlit==0.61.0
-xgboost==1.6.0
 catboost==1.0.5
