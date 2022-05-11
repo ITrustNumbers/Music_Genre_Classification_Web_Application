@@ -1,5 +1,6 @@
 Flask==2.0.2
 catboost==1.0.5
-xgboost==1.6.0
+xgboost==1.6.1
 joblib==1.1.0
 pydub==0.25.1
+scikit-learn=1.0.2

@@ -44,7 +44,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
-    <title>Music Genre Classification</title>
+    <title>Indian Coin Classifier</title>
     <style>
       table { border-collapse: collapse; }
       tr { border: none; }
@@ -60,7 +60,7 @@
   </head>
   <body style="background-color: Gainsboro;">
 
-    <p><center><font face='Manrope' size='12'><b>Music Genre Classification</b></font><br>
+    <p><center><font face='Manrope' size='12'><b>Indian Coin Denomination Classifier</b></font><br>
     <font face='Manrope' size='6'>A Web Application by: Yash Chauhan</font></center></p>
 
     <center><table cellspacing='0'>
@@ -75,18 +75,17 @@
     </table></center>
       <br>
 
-      <p><center><font face='Manrope' color=black size='6'>About:<br>
-      <center><font face='Manrope' color=black size='5'>Want to find out which music genre gives you the kicks,
-      upload some of your favourite songs and this tool will use the power of machine learning(Really Smart Mathematics) and
-    return the name of the most probable genre for that song.</font></center></p>
+      <p><center><font face='Manrope' color=black size='6'>How to use:<br>
+      <center><font face='Manrope' color=black size='5'>Upload an image of an Indian coin(Tail Side) in which the Denomination
+      is clearly visible. Then click on the submit button and let the magic of artificial intelligence do the magic!</font></center></p>
 
-      <form class="p-3 text-center" action='/predict' method='post' enctype='multipart/form-data'>
+      <form class="p-3 text-center" action='/prediction' method='post' enctype='multipart/form-data'>
         <center><input class='form-control' type='file' name='imagefile' accept= 'image/*' style="width: 75%;"></center>
-        <input class='btn btn-primary mt-3' name='model' type='submit' value='Use XGBoost'>
-        <input class='btn btn-primary mt-3' name='model' type='submit' value='Use CatBoost'>
-        <input class='btn btn-primary mt-3' name='model' type='submit' value='Use Random Forest'>
-        <input class='btn btn-primary mt-3' name='model' type='submit' value='Use Ensembled Model'>
+        <input class='btn btn-primary mt-3' type='submit' value='Predict'>
       </form>
+
+      <h2> Generated Prediction : <u> {{pred}} Rupee Coin </u> (Probability : {{pred_prob}})</h2>
+      <img src="{{img_path}}" width="600" height="600" alt="">
 
   </body>
 </html>
