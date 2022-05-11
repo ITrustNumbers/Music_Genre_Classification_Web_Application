@@ -4,6 +4,7 @@ import numpy as np
 import os
 import pandas as pd
 import numpy as np
+import joblib
 
 def extract_features(audio_path):
 
@@ -72,8 +73,15 @@ def extract_features(audio_path):
     #Creating datafram
     df = pd.DataFrame(feature_dic)
 
-    return df.head(5)
+    #Scaling
+    with open('scaler.save', 'rb') as f:
+        scaler = joblib.load(f)
+
+    cols = df.columns
+    df = pd.DataFrame(scaler.transform(df), columns = cols)
+
+    return df
 
 if __name__ == '__main__':
 
-    print(extract_features(os.path.join('static','blues.00007.wav')))
+    print(extract_features(os.path.join('static','blues.00007.wav')).values)

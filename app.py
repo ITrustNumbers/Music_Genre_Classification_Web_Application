@@ -49,7 +49,8 @@ def prediction():
     audio.save(audio_path)
 
     #Extracting Features
-
+    import Preprocessor.py
+    features = extract_features(audio_path)
 
     model = request.form['model'].split()[-1][0]
 
