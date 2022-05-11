@@ -76,4 +76,4 @@ def extract_features(audio_path):
 
 if __name__ == '__main__':
 
-    extract_features(os.path.join('static','blues.00007.wav'))
+    print(extract_features(os.path.join('static','blues.00007.wav')))
