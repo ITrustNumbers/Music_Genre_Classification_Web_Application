@@ -81,7 +81,7 @@
     return the name of the most probable genre for that song.</font></center></p>
 
       <form class="p-3 text-center" action='/predict' method='post' enctype='multipart/form-data'>
-        <center><input class='form-control' type='file' name='imagefile' accept= 'image/*' style="width: 75%;"></center>
+        <center><input class='form-control' type='file' name='audiofile' accept= 'audio/*' style="width: 75%;"></center>
         <input class='btn btn-primary mt-3' name='model' type='submit' value='Use XGBoost'>
         <input class='btn btn-primary mt-3' name='model' type='submit' value='Use CatBoost'>
         <input class='btn btn-primary mt-3' name='model' type='submit' value='Use Random Forest'>

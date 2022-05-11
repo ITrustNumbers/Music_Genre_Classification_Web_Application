@@ -29,6 +29,10 @@ models = [cbc, xgbc, rfc]
 weights = [0.35, 0.35, 0.30]
 emc = EnsembledModel(models, weights)
 
+#Labels
+label = {0: 'blues', 1: 'classical', 2: 'country', 3: 'disco',
+        4: 'hiphop', 5: 'jazz', 6: 'metal', 7: 'pop', 8: 'reggae', 9: 'rock'}
+
 #Application Framework
 app = Flask(__name__)
 
@@ -38,6 +42,15 @@ def index_page():
 
 @app.route('/predict', methods=['POST'])
 def prediction():
+
+    #Getting user Audio
+    audio = request.files['audiofile']
+    audio_path = 'static/' + audio.filename
+    audio.save(audio_path)
+
+    #Extracting Features
+
+
     model = request.form['model'].split()[-1][0]
 
     return render_template("Test.html", model=model)
