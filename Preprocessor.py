@@ -1,9 +1,7 @@
 #Libraries
 import librosa
 import numpy as np
-import os
 import pandas as pd
-import numpy as np
 import joblib
 
 def extract_features(audio_path):
@@ -98,6 +96,6 @@ def extract_features(audio_path):
 
 if __name__ == '__main__':
 
-    path = os.path.join('static','blues.00007.wav')
+    path = 'static/blues.00007.wav'
     print(extract_features(path))
     ch = input('')

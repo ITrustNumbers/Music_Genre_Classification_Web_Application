@@ -11,7 +11,10 @@ class EnsembledModel:
   def __weighted_probs(self, X):
     weighted_probs = []
     for model,weight in zip(self.__models, self.__weights):
-      weighted_probs.append(model.predict_proba(X) * weight)
+      if weight == 0.3:
+        weighted_probs.append(model.predict_proba([X])[0] * weight)
+      else:
+        weighted_probs.append(model.predict_proba(X) * weight)
     return weighted_probs
   
   #Funstion to calculate ensembler prediction probability

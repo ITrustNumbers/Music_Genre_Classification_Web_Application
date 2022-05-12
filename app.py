@@ -2,10 +2,8 @@
 from flask import Flask
 from flask import render_template, request
 import numpy as np
-import joblib
-import xgboost as xgb
 import catboost as cb
-import os
+import joblib
 import Preprocessor as prep
 import matplotlib.pyplot as plt
 import librosa
@@ -18,12 +16,16 @@ label = {0: 'Blues', 1: 'Classical', 2: 'Country', 3: 'Disco',
 #Loading Models
 #XGB
 import saved_models.XGBCNative as xgbc
+
 #CBC
 cbc = cb.CatBoostClassifier()
-path = os.path.join('saved_models', 'CBClassifier.json')
+path = 'saved_models/CBClassifier.json'
 cbc.load_model(path)
+
 #Random Forest
-import saved_models.RFCNative as rfc
+with open('saved_models/RFClassifier.sav', 'rb') as f:
+    rfc = joblib.load(f)
+
 #Ensembled Class
 from MyEnsembledClassifier import EnsembledModel
 models = [cbc, xgbc, rfc]
@@ -47,7 +49,7 @@ def predict(audio_path,model):
 
     elif model == 'F':
         model_name = 'Random Forest'
-        probs = rfc.predict_proba(features)
+        probs = rfc.predict_proba([features])[0]
 
     else:
         model_name = 'Ensembled Model'
@@ -69,7 +71,7 @@ def get_mfcc(audio_path):
     plt.figure(figsize=(16, 6))
     librosa.display.specshow(chromagram, x_axis='time', y_axis='chroma', cmap='coolwarm');
     #saving
-    img_path = os.path.join('static', 'Chroma_Frequencies.png')
+    img_path = 'static/chroma_freq.png'
     plt.savefig(img_path, bbox_inches='tight', dpi=200)
 
     return img_path
@@ -103,4 +105,4 @@ def prediction():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
