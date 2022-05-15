@@ -28,9 +28,7 @@ with open('saved_models/RFClassifier.sav', 'rb') as f:
 
 #Ensembled Class
 from MyEnsembledClassifier import EnsembledModel
-models = [cbc, xgbc, rfc]
-weights = [0.35, 0.35, 0.30]
-emc = EnsembledModel(models, weights)
+emc = EnsembledModel(models=[cbc, xgbc, rfc], weights=[0.35, 0.35, 0.30])
 
 #Function for prediction
 def predict(audio_path,model):
