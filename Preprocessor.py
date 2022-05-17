@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import joblib
 
-def extract_features(audio_path):
+def extract_features(audio_path,scaler):
 
     #load Audio
     audio_lb, sr = librosa.load(audio_path)
@@ -88,9 +88,6 @@ def extract_features(audio_path):
     df = df[cols]
 
     #Scaling
-    with open('scaler.save', 'rb') as f:
-        scaler = joblib.load(f)
-
     df = pd.DataFrame(scaler.transform(df), columns = cols)
     return df.values[0]
 

@@ -13,6 +13,10 @@ import librosa.display
 label = {0: 'Blues', 1: 'Classical', 2: 'Country', 3: 'Disco',
         4: 'Hiphop', 5: 'Jazz', 6: 'Metal', 7: 'Pop', 8: 'Reggae', 9: 'Rock'}
 
+#Loading Scaler Object
+with open('scaler.save', 'rb') as f:
+    scaler = joblib.load(f)
+
 #Loading Models
 #XGB
 import saved_models.XGBCNative as xgbc
@@ -34,7 +38,7 @@ emc = EnsembledModel(models=[cbc, xgbc, rfc], weights=[0.35, 0.35, 0.30])
 def predict(audio_path,model):
 
     #Extracting Features
-    features = prep.extract_features(audio_path)
+    features = prep.extract_features(audio_path,scaler)
 
     #Predicting
     if model == 'X':
@@ -103,4 +107,4 @@ def prediction():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
