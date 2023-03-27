@@ -1,0 +1,9 @@
+Dockerfile
+README.md
+Web_Application_Developed.png
+*.pyc
+*.pyo
+*.pyd
+*.gitignore
+__pycache__
+.pytest_cache
